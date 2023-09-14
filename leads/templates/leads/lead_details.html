@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %} Lead Details {% endblock title %}
+
+{% block content %}
+<body>
+  <section class="text-gray-600 body-font overflow-hidden">
+    <div class="container px-5 py-5 mx-auto">
+      <div class="lg:w-2/3 mx-auto flex flex-wrap">
+        <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+          <h2 class="text-sm title-font text-gray-500 tracking-widest">
+            LEAD
+          </h2>
+          <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">
+            {{ lead.first_name }} {{ lead.last_name }}
+          </h1>
+          <div class="flex mb-4">
+            <a href="#"
+              class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
+              >Details</a
+            >
+            <a href="{% url 'leads:lead-category' lead.pk %}"
+              class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1"
+              >Category</a
+            >
+            <a href="{% url 'leads:lead-update' lead.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1"
+              >Update</a
+            >
+          </div>
+          <p class="leading-relaxed mb-4">
+            {{ lead.description }}
+          </p>
+          <div class="flex border-t border-gray-200 py-2">
+            <span class="text-gray-500">Age</span>
+            <span class="ml-auto text-gray-900">{{ lead.age }}</span>
+          </div>
+          <div class="flex border-t border-gray-200 py-2">
+            <span class="text-gray-500">Category</span>
+            <span class="ml-auto text-gray-900">{{ lead.category.name|default:'None' }}</span>
+          </div>
+          <div class="flex border-t border-gray-200 py-2">
+            <span class="text-gray-500">Email</span>
+            <span class="ml-auto text-gray-900">{{ lead.email }}</span>
+          </div>
+          <div class="flex border-t border-gray-200 py-2">
+            <span class="text-gray-500">Phone Number</span>
+            <span class="ml-auto text-gray-900">{{ lead.phone_number }}</span>
+          </div>
+          <div class="flex border-t border-gray-200 py-2">
+            <span class="text-gray-500">Date Added</span>
+            <span class="ml-auto text-gray-900">{{ lead.date_added }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-200 py-2">
+            <span class="text-gray-500">Agent</span>
+            <span class="ml-auto text-gray-900">{{ lead.agent.user }}</span>
+          </div>
+          <div class="flex">
+            <a href="{% url 'leads:lead-list' %}"
+              class="flex items-start text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded"
+            >
+              Back
+          </a>
+            <a href="{% url 'leads:lead-delete' lead.pk %}"
+              class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+            >
+              Delete
+              <svg class="rounded-full ml-3 w-4 h-6" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="#fff" width="24px" height="24px"><path d="M 10 2 L 9 3 L 3 3 L 3 5 L 4.109375 5 L 5.8925781 20.255859 L 5.8925781 20.263672 C 6.023602 21.250335 6.8803207 22 7.875 22 L 16.123047 22 C 17.117726 22 17.974445 21.250322 18.105469 20.263672 L 18.107422 20.255859 L 19.890625 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 6.125 5 L 17.875 5 L 16.123047 20 L 7.875 20 L 6.125 5 z"/></svg>
+          </a>
+          </div>
+        </div>
+        <!-- <img
+          alt="ecommerce"
+          class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+          src="https://dummyimage.com/400x400"
+        /> -->
+      </div>
+    </div>
+  </section>
+</body>
+{% endblock content %}

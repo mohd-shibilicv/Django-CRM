@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="text-gray-600 body-font">
+  <div class="container mx-auto flex px-200 py-500 items-center justify-center flex-col">
+    <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="{% static 'images/CRM.webp' %}">
+    <div class="text-center lg:w-2/3 w-full">
+      <h1 class="title-font sm:text-3xl text-3xl mb-4 font-medium text-gray-900">Customer Relationship Management System built with Django</h1>
+      <p class="mb-8 leading-relaxed">The CRM (Customer Relationship Management) System will help you to manage your Leads</p>
+      <div class="flex justify-center gap-5">
+        
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'leads:lead-list' %}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">View Leads</a>
+        
+          {% if request.user.is_organisor %}
+          <a href="{% url 'agents:agents-list' %}" class="inline-flex text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">Manage Agents</a>
+          {% endif %}
+          
+        {% else %}
+        <a href="{% url 'login' %}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login to get started</a>
+        {% endif %}
+          
+        <!-- <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button> -->
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

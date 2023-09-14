@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Category List
+{% endblock title %}
+
+{% block content %}
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col justify-center text-center w-full mb-20">
+        <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Category</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">These categories segment the leads</p>
+        <a href="{% url 'leads:category-create' %}" class="mt-5 self-center w-1/6 bg-gray-500 hover:bg-gray-600 px-3 py-2 rounded-xl text-white font-semibold">Create category</a>
+      </div>
+      <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+        <table class="table-auto w-full text-left whitespace-no-wrap">
+          <thead>
+            <tr>
+              <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Name</th>
+              <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Lead Count</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+                <td class="px-4 py-3">Unassigned</td>
+                <td class="px-4 py-3">{{ unassigned_leads_count }}</td>
+            </tr>
+            
+            {% for category in category_list %}
+            
+            <tr>
+                <td class="px-4 py-3"><a href="{% url 'leads:category-details' category.pk %}">{{ category.name}}</a></td>
+                <td class="px-4 py-3">TODO Count</td>
+            </tr>
+
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+      <div class="flex pl-4 mt-7 lg:w-2/3 w-full mx-auto">
+        <a href="{% url 'leads:lead-list' %}" class="flex text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded">Back</a>
+      </div>
+    </div>
+</section>
+{% endblock content %}

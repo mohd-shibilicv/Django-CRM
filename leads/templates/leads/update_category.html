@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load tailwind_filters %}
+
+{% block title %}
+    Update Category
+{% endblock title %}
+
+{% block content %}
+<body>
+    <div class="max-w-lg mx-auto mt-10">
+        <h1 class="text-center text-3xl font-bold m-10">Update Category</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="flex flex-col mt-7">    
+                <button type="submit" class="w-full bg-indigo-500 hover:bg-indigo-600 px-3 py-2 rounded-xl text-white font-semibold">Update</button>
+                <br />
+                <a href="{% url 'leads:category-list' %}" class="text-center hover:text-indigo-600 mb-10">Back</a>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock content %}
